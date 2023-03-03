@@ -1,0 +1,60 @@
+<MyGridLayout>
+	cols:2
+	spacing:10
+	
+	Button:
+		on_press:root.playSound('Vogel')
+		background_color: ("#FF8C00")
+		Image:
+			source: 'images/vogel.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
+
+	Button:
+		on_press:root.playSound('Katze')
+		background_color: ("#00FFFF")
+		Image:
+			source: 'images/katze.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
+			
+	Button:
+		on_press:root.playSound('Kuh')		
+		background_color: ("#DDA0DD")
+		Image:
+			source: 'images/kuh.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
+	Button:
+		on_press:root.playSound('Esel')
+		background_color: ("#E2DDD5")
+		Image:
+			source: 'images/esel.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
+	Button:
+		on_press:root.playSound('Schwein')
+		background_color: ("#FFFF00")
+		Image:
+			source: 'images/schwein.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
+	Button:
+		on_press:root.playSound('Schaf')
+		background_color: ("#FFD700")
+		Image:
+			source: 'images/schaf.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			allow_stretch: True
+			size: root.width*0.25, root.height*0.25
