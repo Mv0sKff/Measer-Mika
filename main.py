@@ -6,18 +6,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.core.audio import SoundLoader
 
 class MyGridLayout(GridLayout):
-    def playSound(self,src):
-        sounds = {'Hund':'sounds/dog_bark_01.mp3',
-                  'Vogel':'sounds/birds_cardinal.mp3',
-                  'Katze':'sounds/cat_meow_04.mp3',
-                  'Kuh':'sounds/cows_two_cows_mooing.mp3',
-                  'Esel':'sounds/donkey_braying.mp3',
-                  'Schwein':'sounds/pig_grunt.mp3',
-                  'Schaf':'sounds/sheep_bleat_001.mp3'
-                  }
-        
-        b=SoundLoader.load(filename=sounds[src])
-        b.play()
+    pass
         
 
 class MultimediaApp(App):

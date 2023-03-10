@@ -1,60 +1,38 @@
 <MyGridLayout>
-	cols:2
+	cols:1
 	spacing:10
+
+	canvas.before:
+        Color:
+            rgba: (85/255, 85/255, 85/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 	
-	Button:
-		on_press:root.playSound('Vogel')
-		background_color: ("#FF8C00")
-		Image:
-			source: 'images/vogel.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
+	TextInput:
+        id: 'input'
+        hint_text:'Gib deine Größe '
+        pos_hint: {'center_x': 0.5, 'center_y': 0.705}
+        size_hint: 0.95, 0.5
+
+	Carousel:
+	    direction: 'right'
+	    AsyncImage:
+	        source: 'images/Anleitung1.png'
+	    AsyncImage:
+	        source: 'images/Anleitung2.png'
+	
+	GridLayout:
+		cols:2
+
+		CheckBox:
+        	id: checkbox
+			
+		Label:
+			text: "Tutorial beim Start anzeigen"
+			font_size:20
 
 	Button:
-		on_press:root.playSound('Katze')
+		#on_press:root.playSound('Katze')
 		background_color: ("#00FFFF")
-		Image:
-			source: 'images/katze.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
-			
-	Button:
-		on_press:root.playSound('Kuh')		
-		background_color: ("#DDA0DD")
-		Image:
-			source: 'images/kuh.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
-	Button:
-		on_press:root.playSound('Esel')
-		background_color: ("#E2DDD5")
-		Image:
-			source: 'images/esel.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
-	Button:
-		on_press:root.playSound('Schwein')
-		background_color: ("#FFFF00")
-		Image:
-			source: 'images/schwein.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
-	Button:
-		on_press:root.playSound('Schaf')
-		background_color: ("#FFD700")
-		Image:
-			source: 'images/schaf.png'
-			center_x: self.parent.center_x
-			center_y: self.parent.center_y
-			allow_stretch: True
-			size: root.width*0.25, root.height*0.25
