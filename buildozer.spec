@@ -1,8 +1,8 @@
 [app]
 
-title = MultimediaImage App
-package.name = multimediaimageapp
-package.domain = gsog.de
+title = Measure Mika
+package.name = measuremika
+package.domain = measuremika.de
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,mp3
