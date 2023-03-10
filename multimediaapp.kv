@@ -1,3 +1,4 @@
+#:kivy 1.0
 <MyGridLayout>
 	cols:1
 	spacing: 10
@@ -15,7 +16,6 @@
         hint_text:'Deine Größe in cm'
 		multiline: False
 		padding: [20, 20, 20, 20]
-		#spacing: 20
 		size_hint_y: None
 		height: 60
 
@@ -29,12 +29,18 @@
 	GridLayout:
 		cols:2
 
+		CheckBox:
+        	id: checkbox
+			halign: 'left'
+			size_hint_x: None
+			width: 20
+
 		Label:
 			text: "Tutorial beim Start anzeigen"
 			font_size:20
-
-		CheckBox:
-        	id: checkbox
+			halign: 'left'
+			size_hint_x: None
+			width: 280
 
 	Button:
 		#on_press:root.playSound('Katze')
