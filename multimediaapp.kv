@@ -1,6 +1,7 @@
 <MyGridLayout>
 	cols:1
-	spacing:10
+	spacing: 10
+	padding: 10
 
 	canvas.before:
         Color:
@@ -8,13 +9,15 @@
         Rectangle:
             pos: self.pos
             size: self.size
-
 	
 	TextInput:
         id: 'input'
-        hint_text:'Gib deine Größe '
-        pos_hint: {'center_x': 0.5, 'center_y': 0.705}
-        size_hint: 0.95, 0.5
+        hint_text:'Deine Größe in cm'
+		multiline: False
+		padding: [20, 20, 20, 20]
+		#spacing: 20
+		size_hint_y: None
+		height: 60
 
 	Carousel:
 	    direction: 'right'
@@ -26,13 +29,14 @@
 	GridLayout:
 		cols:2
 
-		CheckBox:
-        	id: checkbox
-			
 		Label:
 			text: "Tutorial beim Start anzeigen"
 			font_size:20
 
+		CheckBox:
+        	id: checkbox
+
 	Button:
 		#on_press:root.playSound('Katze')
 		background_color: ("#00FFFF")
+		#size_hint: (.3, 1)
