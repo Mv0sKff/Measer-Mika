@@ -16,14 +16,25 @@ class WindowManager(ScreenManager):
     pass
 
 class MeasureMikaApp(App):
-    pass
+    def build(self):
+        if platform == "android":
+            from android.permissions import request_permissions, Permission
+            request_permissions([
+                Permission.CAMERA,
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE
+            ])
+            
+        app = ScreenManager()
+        app.add_widget(MainWindow(name='main'))
+        app.add_widget(SecondWindow(name='second'))
+        return app
 
-if __name__ == "__main__":
+def on_start(self):
     if platform == "android":
         from android.permissions import request_permissions, Permission
-        request_permissions([
-            Permission.CAMERA,
-            Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.READ_EXTERNAL_STORAGE
-        ])
+        request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+
+
+if __name__ == "__main__":
     MeasureMikaApp().run()
