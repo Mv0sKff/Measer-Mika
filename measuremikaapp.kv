@@ -66,12 +66,19 @@ WindowManager:
         Camera:
             id: camera
             play: True
-        ToggleButton:
-            text: 'Play'
-            on_press: camera.play = not camera.play
-            size_hint_y: None
-            height: '48dp'
 
+    ToggleButton:
+		id: 'capture_button'
+        on_press: camera.play = not camera.play
+		size_hint: (None, None)
+		pos_hint: {"center_x":0.5, "center_y":0.1}
+		background_color: 0, 0, 0, 0
+		Image:
+			id: 'capture_image'
+			source: 'images/CaptureButton.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+		
 		Button:
     	    text: "Go Back"
     	    on_release:
