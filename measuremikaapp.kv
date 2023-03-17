@@ -62,8 +62,7 @@ WindowManager:
     name: "second"
 
 	GridLayout:
-		cols:2
-
+		cols:1
         Camera:
             id: camera
             play: True
@@ -78,3 +77,10 @@ WindowManager:
     	    on_release:
     	        app.root.current = "main"
     	        root.manager.transition.direction = "right"
+
+	Label:
+		text: "Das ist ein rnaedrtu neaturinedt \nrunaedtnitar ranerriten nrianetinae"
+		font_size:20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"x": 0, "y": 0.92}
