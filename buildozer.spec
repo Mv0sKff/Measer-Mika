@@ -13,6 +13,7 @@ requirements = python3,kivy,opencv-python,plyer
 orientation = portrait
 fullscreen = 0
 android.archs = arm64-v8a
+android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE
 
 # iOS specific
 ios.kivy_ios_url = https://github.com/kivy/kivy-ios
