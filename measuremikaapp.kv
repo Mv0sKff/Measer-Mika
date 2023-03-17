@@ -1,0 +1,68 @@
+#:kivy 1.0
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+<MainWindow>:
+	name: "main"
+	GridLayout
+		cols:1
+		spacing: 10
+		padding: 10
+
+		canvas.before:
+	        Color:
+	            rgba: (85/255, 85/255, 85/255, 1)
+	        Rectangle:
+	            pos: self.pos
+	            size: self.size
+
+		TextInput:
+	        id: 'input'
+	        hint_text:'Deine Größe in cm'
+			multiline: False
+			padding: [20, 20, 20, 20]
+			size_hint_y: None
+			height: 60
+
+		Carousel:
+		    direction: 'right'
+		    AsyncImage:
+		        source: 'images/Anleitung1.png'
+		    AsyncImage:
+		        source: 'images/Anleitung2.png'
+
+		GridLayout:
+			cols:2
+
+			CheckBox:
+	        	id: checkbox
+				halign: 'left'
+				size_hint_x: None
+				width: 20
+
+			Label:
+				text: "Tutorial beim Start anzeigen"
+				font_size:20
+				halign: 'left'
+				size_hint_x: None
+				width: 280
+
+		Button:
+            text: "Submit"
+			background_normal: ''
+			background_color: ("#3584e4")
+			size_hint_y: None
+			height: 100
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+<SecondWindow>:
+    name: "second"
+
+	Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"

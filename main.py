@@ -1,14 +1,23 @@
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.core.audio import SoundLoader
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.lang import Builder
 
-class MyGridLayout(GridLayout):
-    pass        
+class MainWindow(Screen):
+    pass
 
-class MultimediaApp(App):
+
+class SecondWindow(Screen):
+    pass
+
+
+class WindowManager(ScreenManager):
+    pass
+
+class MeasureMikaApp(App):
     def build(self):
+        kv = Builder.load_file("measuremikaapp.kv")
         self.title = 'Measure Mika'
-        return MyGridLayout()
+        return kv
 
 if __name__ == "__main__":
-    MultimediaApp().run()
+    MeasureMikaApp().run()
