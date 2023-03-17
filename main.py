@@ -9,15 +9,11 @@ class MainWindow(Screen):
 class SecondWindow(Screen):
     pass
 
-
 class WindowManager(ScreenManager):
     pass
 
 class MeasureMikaApp(App):
-    def build(self):
-        kv = Builder.load_file("measuremikaapp.kv")
-        self.title = 'Measure Mika'
-        return kv
+    pass
 
 if __name__ == "__main__":
     MeasureMikaApp().run()

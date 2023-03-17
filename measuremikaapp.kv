@@ -1,4 +1,4 @@
-#:kivy 1.0
+#:kivy 2.0
 WindowManager:
     MainWindow:
     SecondWindow:
@@ -61,8 +61,20 @@ WindowManager:
 <SecondWindow>:
     name: "second"
 
-	Button:
-        text: "Go Back"
-        on_release:
-            app.root.current = "main"
-            root.manager.transition.direction = "right"
+	GridLayout:
+		cols:2
+
+        Camera:
+            id: camera
+            play: True
+        ToggleButton:
+            text: 'Play'
+            on_press: camera.play = not camera.play
+            size_hint_y: None
+            height: '48dp'
+
+		Button:
+    	    text: "Go Back"
+    	    on_release:
+    	        app.root.current = "main"
+    	        root.manager.transition.direction = "right"
