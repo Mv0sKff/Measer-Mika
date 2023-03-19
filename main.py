@@ -4,6 +4,14 @@ from kivy.lang import Builder
 from kivy.config import Config
 from kivy.utils import platform
 
+if platform == "android":
+    from android.permissions import request_permissions, Permission
+    request_permissions([
+        Permission.CAMERA,
+        Permission.WRITE_EXTERNAL_STORAGE,
+        Permission.READ_EXTERNAL_STORAGE
+    ])
+
 Config.set('graphics', 'resizable', True)
 
 class MainWindow(Screen):
@@ -17,6 +25,9 @@ class WindowManager(ScreenManager):
 
 class MeasureMikaApp(App):
     def build(self):
+        app = ScreenManager()
+        app.add_widget(MainWindow(name='main'))
+
         if platform == "android":
             from android.permissions import request_permissions, Permission
             request_permissions([
@@ -24,10 +35,9 @@ class MeasureMikaApp(App):
                 Permission.WRITE_EXTERNAL_STORAGE,
                 Permission.READ_EXTERNAL_STORAGE
             ])
-            
-        app = ScreenManager()
-        app.add_widget(MainWindow(name='main'))
-        app.add_widget(SecondWindow(name='second'))
+            app.add_widget(SecondWindow(name='second'))
+
+        
         return app
 
 def on_start(self):
