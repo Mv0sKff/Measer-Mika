@@ -57,18 +57,20 @@
 <SecondWindow>:
     name: "second"
 
-    Camera:
-        id: camera
-		index: 0
-        play: True
-		allow_stretch: True
-		canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -90
-                origin: self.center
-        canvas.after:
-            PopMatrix
+	GridLayout:
+		cols: 1
+    	Camera:
+    	    id: camera
+			index: 0
+    	    play: True
+			allow_stretch: True
+			canvas.before:
+    	        PushMatrix
+    	        Rotate:
+    	            angle: 240
+    	            origin: self.center
+    	    canvas.after:
+    	        PopMatrix
 
     ToggleButton:
 		id: 'capture_button'
