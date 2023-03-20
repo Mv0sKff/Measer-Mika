@@ -61,10 +61,11 @@
         id: camera
 		index: 0
         play: True
+		allow_stretch: True
 		canvas.before:
             PushMatrix
             Rotate:
-                angle: 180
+                angle: -90
                 origin: self.center
         canvas.after:
             PopMatrix
