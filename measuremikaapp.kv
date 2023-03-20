@@ -57,8 +57,10 @@
 <SecondWindow>:
     name: "second"
 
-	GridLayout:
-		cols: 1
+	BoxLayout:
+		orientation: "vertical"
+    	size_hint_x: None
+		
     	Camera:
     	    id: camera
 			index: 0
@@ -67,7 +69,7 @@
 			canvas.before:
     	        PushMatrix
     	        Rotate:
-    	            angle: 240
+    	            angle: 0
     	            origin: self.center
     	    canvas.after:
     	        PopMatrix
