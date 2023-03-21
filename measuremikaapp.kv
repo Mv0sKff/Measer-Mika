@@ -57,22 +57,18 @@
 <SecondWindow>:
     name: "second"
 
-	BoxLayout:
-		orientation: "vertical"
-    	size_hint_x: None
-		
-    	Camera:
-    	    id: camera
-			index: 0
-    	    play: True
-			allow_stretch: True
-			canvas.before:
-    	        PushMatrix
-    	        Rotate:
-    	            angle: -90
-    	            origin: self.center
-    	    canvas.after:
-    	        PopMatrix
+    Camera:
+        id: camera
+		index: 1
+        play: True
+		allow_stretch: True
+		canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -90
+                origin: self.center
+        canvas.after:
+            PopMatrix
 
     ToggleButton:
 		id: 'capture_button'
@@ -91,6 +87,11 @@
     	    on_release:
     	        app.root.current = "main"
     	        root.manager.transition.direction = "right"
+
+	Button:
+		text: "Index"
+		id: 'camera_index_button'
+		on_press: app.changeCameraIndex()
 
 	Label:
 		text: "Das ist ein rnaedrtu neaturinedt \nrunaedtnitar ranerriten nrianetinae"

@@ -10,7 +10,25 @@ class MainWindow(Screen):
     pass
 
 class SecondWindow(Screen):
-    pass
+    def __init__(self):
+        # -1 is auto selection
+        self.index = -1
+
+    def returnCameraIndexes():
+        index = 0
+        arr = []
+        while True:
+            cap = cv2.VideoCapture(index)
+            if not cap.read()[0]:
+                break
+            else:
+                arr.append(index)
+            cap.release()
+            index += 1
+        return arr
+
+    def changeCameraIndex(self, *args):
+        self.camera_index_button.text = "Hello"
 
 class WindowManager(ScreenManager):
     pass
