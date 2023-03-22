@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.config import Config
 from kivy.utils import platform
+import cv2
 
 Config.set('graphics', 'resizable', True)
 
@@ -10,25 +11,16 @@ class MainWindow(Screen):
     pass
 
 class SecondWindow(Screen):
-    def __init__(self):
+    def __init__(self, **kwargs):
+        super(SecondWindow, self).__init__(**kwargs)
+
         # -1 is auto selection
         self.index = -1
 
-    def returnCameraIndexes():
-        index = 0
-        arr = []
-        while True:
-            cap = cv2.VideoCapture(index)
-            if not cap.read()[0]:
-                break
-            else:
-                arr.append(index)
-            cap.release()
-            index += 1
-        return arr
-
-    def changeCameraIndex(self, *args):
-        self.camera_index_button.text = "Hello"
+    def changeCameraIndex(self):
+        self.ids.camera_index_button.text = "Hello"
+        self.ids.camera.index = 1
+        #self.text = "Hello"
 
 class WindowManager(ScreenManager):
     pass

@@ -14,7 +14,7 @@
 	            size: self.size
 
 		TextInput:
-	        id: 'input'
+	        id: input
 	        hint_text:'Deine Größe in cm'
 			multiline: False
 			padding: [20, 20, 20, 20]
@@ -59,9 +59,9 @@
 
     Camera:
         id: camera
-		index: 1
+		index: 0
         play: True
-		allow_stretch: True
+		allow_stretch: False
 		canvas.before:
             PushMatrix
             Rotate:
@@ -71,27 +71,30 @@
             PopMatrix
 
     ToggleButton:
-		id: 'capture_button'
+		id: capture_button
         on_press: camera.play = not camera.play
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.5, "center_y":0.1}
 		background_color: 0, 0, 0, 0
 		Image:
-			id: 'capture_image'
+			id: capture_image
 			source: 'images/CaptureButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
 		
-		Button:
-    	    text: "Go Back"
-    	    on_release:
-    	        app.root.current = "main"
-    	        root.manager.transition.direction = "right"
-
 	Button:
+        text: "Go Back"
+		size_hint: (None, None)
+		pos_hint: {"center_x":0.2, "center_y":0.1}
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+	Button:
+		id: camera_index_button
 		text: "Index"
-		id: 'camera_index_button'
-		on_press: app.changeCameraIndex()
+		size_hint: (None, None)
+		pos_hint: {"center_x":0.8, "center_y":0.1}
+		on_press: root.changeCameraIndex()
 
 	Label:
 		text: "Das ist ein rnaedrtu neaturinedt \nrunaedtnitar ranerriten nrianetinae"
