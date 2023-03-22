@@ -1,9 +1,9 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.camera import Camera
 from kivy.lang import Builder
 from kivy.config import Config
 from kivy.utils import platform
-import cv2
 
 Config.set('graphics', 'resizable', True)
 
@@ -18,9 +18,8 @@ class SecondWindow(Screen):
         self.index = -1
 
     def changeCameraIndex(self):
-        self.ids.camera_index_button.text = "Hello"
+        self.ids.camera_index_button.text = "Index 1"
         self.ids.camera.index = 1
-        #self.text = "Hello"
 
 class WindowManager(ScreenManager):
     pass
