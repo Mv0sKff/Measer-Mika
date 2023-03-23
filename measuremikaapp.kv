@@ -60,6 +60,7 @@
         id: camera
 		index: 0
         play: True
+		resolution: (500, 1000)
 		allow_stretch: False
 		canvas.before:
             PushMatrix
@@ -71,7 +72,7 @@
 
     ToggleButton:
 		id: capture_button
-        on_press: camera.play = not camera.play
+        on_press: camera.play = not camera.play; root.addSchrittIndex(); root.changeTippText()
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.5, "center_y":0.1}
 		background_color: 0, 0, 0, 0
@@ -96,8 +97,9 @@
 		on_press: root.changeCameraIndex()
 
 	Label:
-		text: "test"
+		id: 'hinweis_label'
+		text: root.hinweis_label_text
 		font_size:20
 		size_hint_y: None
 		height: 50
-		pos_hint: {"x": 0, "y": 0.92}
+		pos_hint: {"x": 0.05, "y": 0.85}

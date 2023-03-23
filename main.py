@@ -6,6 +6,8 @@ from kivy.config import Config
 from kivy.utils import platform
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.properties import StringProperty
+from kivy.properties import NumericProperty
 
 Config.set('graphics', 'resizable', True)
 
@@ -25,15 +27,36 @@ class MainWindow(Screen):
         return False
 
 class SecondWindow(Screen):
+    hinweis_label_text = StringProperty()
+    schrittIndex = NumericProperty()
+
     def __init__(self, **kwargs):
         super(SecondWindow, self).__init__(**kwargs)
 
         # -1 is auto selection
         self.index = -1
+        self.addSchrittIndex()
+        self.changeTippText()
 
     def changeCameraIndex(self):
         self.ids.camera_index_button.text = "Index 1"
         self.ids.camera.index = 1
+
+    def addSchrittIndex(self):
+        self.schrittIndex += 1
+
+    def returnSchrittIndex(self):
+        self.schrittIndex -= 1
+
+    def changeTippText(self):
+        if self.schrittIndex == 1:
+            self.hinweis_label_text = 'Halten Sie das Handy auf Kopfhöhe und\nzielen Sie mit dem Fadenkreutz auf den tiefsten\nPunkt des Objektes. Nehmen Sie dann ein Foto auf.'
+        elif self.schrittIndex == 2:
+            self.hinweis_label_text = 'Super, erstes Foto ist gemacht, wenn Sie\nden Vorgang wiederholen möchten, dann benutzen\nSie den Button links unten. Wenn alles\npasst, dann den Button rechts unten.'
+        elif self.schrittIndex == 3:
+            self.hinweis_label_text = 'Halten Sie das Handy wieder auf Kopfhöhe\nund zielen Sie mit dem Fadenkreutz auf den\nhöchsten Punkt des Objektes.'
+        elif self.schrittIndex == 4:
+            self.hinweis_label_text = 'Auch das ist geschaft, wenn Sie den Vorgang\nwiederholen möchten, dann benutzen Sie den\nButton links unten. Wenn alles passt,\ndann den Button rechts unten.'
 
 class WindowManager(ScreenManager):
     pass
