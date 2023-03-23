@@ -10,8 +10,10 @@ from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 
 Config.set('graphics', 'resizable', True)
+hoeheInZentimeter = NumericProperty()
 
 class MainWindow(Screen):
+
     def checkData(self):
         popup = Popup(title='Hinweis',
             size_hint=(None, None), size=(350, 100))    
@@ -24,6 +26,8 @@ class MainWindow(Screen):
             popup.content = Label(text='Bitte geben Sie einen Numerischen Wert an!')
             popup.open()
             return True
+        
+        hoeheInZentimeter = int(self.ids.input.text)
         return False
 
 class SecondWindow(Screen):
@@ -34,7 +38,6 @@ class SecondWindow(Screen):
         super(SecondWindow, self).__init__(**kwargs)
 
         self.addSchrittIndex()
-        self.changeTippText()
         self.setWeiterButtonVisibility(False)
 
     def addSchrittIndex(self):
@@ -116,3 +119,5 @@ class MeasureMikaApp(App):
 
 if __name__ == "__main__":
     MeasureMikaApp().run()
+
+
