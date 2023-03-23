@@ -33,14 +33,9 @@ class SecondWindow(Screen):
     def __init__(self, **kwargs):
         super(SecondWindow, self).__init__(**kwargs)
 
-        # -1 is auto selection
-        self.index = -1
         self.addSchrittIndex()
         self.changeTippText()
-
-    def changeCameraIndex(self):
-        self.ids.camera_index_button.text = "Index 1"
-        self.ids.camera.index = 1
+        self.setWeiterButtonVisibility(False)
 
     def addSchrittIndex(self):
         self.schrittIndex += 1
@@ -57,6 +52,22 @@ class SecondWindow(Screen):
             self.hinweis_label_text = 'Halten Sie das Handy wieder auf Kopfhöhe\nund zielen Sie mit dem Fadenkreutz auf den\nhöchsten Punkt des Objektes.'
         elif self.schrittIndex == 4:
             self.hinweis_label_text = 'Auch das ist geschaft, wenn Sie den Vorgang\nwiederholen möchten, dann benutzen Sie den\nButton links unten. Wenn alles passt,\ndann den Button rechts unten.'
+
+    def setGoBackButtonVisibility(self, visible):
+        if visible:
+            self.ids.go_back_button.opacity = 100
+            self.ids.go_back_button.disabled: False
+        else:
+            self.ids.go_back_button.opacity = 0
+            self.ids.go_back_button.disabled: True
+
+    def setWeiterButtonVisibility(self, visible):
+        if visible:
+            self.ids.weiter_button.opacity = 100
+            self.ids.weiter_button.disabled: False
+        else:
+            self.ids.weiter_button.opacity = 0
+            self.ids.weiter_button.disabled: True  
 
 class WindowManager(ScreenManager):
     pass

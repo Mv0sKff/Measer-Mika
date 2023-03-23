@@ -69,7 +69,15 @@
                 origin: self.center
         canvas.after:
             PopMatrix
-
+	Label:
+		id: crosshair
+		Image:
+			id: crosshair_image
+			source: 'images/Crosshair.png'
+			pos_hint: {"center_x":0.5, "center_y":0.5}
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+			
     ToggleButton:
 		id: capture_button
         on_press: camera.play = not camera.play; root.addSchrittIndex(); root.changeTippText()
@@ -83,18 +91,29 @@
 			center_y: self.parent.center_y
 		
 	Button:
-        text: "Go Back"
+		id: go_back_button
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.2, "center_y":0.1}
         on_release:
             app.root.current = "main"
             root.manager.transition.direction = "right"
+		background_color: 0, 0, 0, 0
+		Image:
+			id: return_Image
+			source: 'images/ReturnButton.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
 	Button:
-		id: camera_index_button
-		text: "Index"
+		id: weiter_button
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.8, "center_y":0.1}
-		on_press: root.changeCameraIndex()
+		background_color: 0, 0, 0, 0
+		on_press: root.setGoBackButtonVisibility(False)
+		Image:
+			id: weiter_Image
+			source: 'images/WeiterButton.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
 
 	Label:
 		id: 'hinweis_label'
