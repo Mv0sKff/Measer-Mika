@@ -5,6 +5,8 @@ from kivy.lang import Builder
 from kivy.config import Config
 from kivy.utils import platform
 from kivy.uix.popup import Popup
+from kivy.uix.button import Button
+from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
@@ -38,15 +40,16 @@ class SecondWindow(Screen):
         super(SecondWindow, self).__init__(**kwargs)
 
         self.addSchrittIndex()
-        self.setWeiterButtonVisibility(False)
 
     def addSchrittIndex(self):
         self.schrittIndex += 1
         self.indexChanged()
+        print(self.schrittIndex, "(+1)")
 
     def returnSchrittIndex(self):
         self.schrittIndex -= 1
         self.indexChanged()
+        print(self.schrittIndex, "(--)")
 
     def changeTippText(self):
         if self.schrittIndex == 1:
@@ -60,45 +63,70 @@ class SecondWindow(Screen):
         else:
             self.hinweis_label_text = ''
 
-    def setGoBackButtonVisibility(self, visible):
-        if visible:
-            self.ids.go_back_button.opacity = 100
-            self.ids.go_back_button.disabled = False
+    def disableWidget(self, id: str, disable: bool):
+        if disable:
+            self.ids[id].disabled = True
+            self.ids[id].opacity = 0
         else:
-            self.ids.go_back_button.opacity = 0
-            self.ids.go_back_button.disabled = True
-
-    def setWeiterButtonVisibility(self, visible):
-        if visible:
-            self.ids.weiter_button.opacity = 100
-            self.ids.weiter_button.disabled = False
-        else:
-            self.ids.weiter_button.opacity = 0
-            self.ids.weiter_button.disabled = True 
-
-    def setCameraCaptureButtonVisibility(self, visible):
-        if visible:
-            self.ids.capture_button.opacity = 100
-            self.ids.capture_button.disabled = False
-        else:
-            self.ids.capture_button.opacity = 0
-            self.ids.capture_button.disabled = True 
+            self.ids[id].disabled = False
+            self.ids[id].opacity = 100
 
     def indexChanged(self):
-        if self.schrittIndex == 2:
-            self.setGoBackButtonVisibility(False)
-            self.setWeiterButtonVisibility(True)
-            self.setCameraCaptureButtonVisibility(False)
-        if self.schrittIndex == 3:
-            self.setWeiterButtonVisibility(False)
-            self.setCameraCaptureButtonVisibility(True)
-        if self.schrittIndex == 4:
-            self.setWeiterButtonVisibility(True)
-            self.setCameraCaptureButtonVisibility(False)
-        #if self.schrittIndex >= 5:
-            # Hier muss dann der 3. Bildschirm aufgerufen werden
+        match self.schrittIndex:
+            case 1:
+                self.disableWidget('go_back_button', False)
+                self.disableWidget('weiter_button', True)
+                self.disableWidget('capture_button', False)
+                self.createRedoButton(False)
+                self.ids['camera'].play = True
+                return
+            case 2:
+                self.disableWidget('go_back_button', True)
+                self.disableWidget('weiter_button', False)
+                self.disableWidget('capture_button', True)
+                self.createRedoButton(True)
+                self.ids['camera'].play = False
+                return
+            case 3:
+                self.disableWidget('weiter_button', True)
+                self.disableWidget('capture_button', False)
+                return
+            case 4:
+                self.disableWidget('weiter_button', False)
+                self.disableWidget('capture_button', True)
+                return
+            case 5:
+                # Hier muss dann der 3. Bildschirm aufgerufen werden
+                return
         self.changeTippText()
-        
+    
+    def createRedoButton(self, create: bool = True):
+        if create:
+            print("create redoButton")
+            newWidget = Builder.load_string('''
+Button:
+	id: redo_button
+	size_hint: (None, None)
+	pos_hint: {"center_x":0.2, "center_y":0.1}
+    on_release:
+        app.root.children[0].returnSchrittIndex()
+	background_color: 0, 0, 0, 0
+	Image:
+		id: redo_image
+		source: 'images/RedoButton.png'
+		center_x: self.parent.center_x
+		center_y: self.parent.center_y
+''')
+            self.add_widget(newWidget)
+        else:
+            # does not work
+            print("try remove redoButton")
+            if 'redo_button' in self.ids:
+                print("remove redoButton")
+                self.remove_widget('redo_button')
+
+class ThirdWindow(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
@@ -114,6 +142,7 @@ class MeasureMikaApp(App):
         app = ScreenManager()
         app.add_widget(MainWindow(name='main'))
         app.add_widget(SecondWindow(name='second'))
+        app.add_widget(ThirdWindow(name='third'))
         
         return app
 

@@ -15,6 +15,7 @@
 
 		TextInput:
 	        id: input
+			text: '180'
 	        hint_text:'Deine Größe in cm'
 			multiline: False
 			padding: [20, 20, 20, 20]
@@ -66,7 +67,7 @@
 
     Button:
 		id: capture_button
-        on_press: camera.play = False; root.addSchrittIndex();
+        on_press: camera.play = False; root.addSchrittIndex()
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.5, "center_y":0.1}
 		background_color: 0, 0, 0, 0
@@ -89,12 +90,32 @@
 			source: 'images/ReturnButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
+
+	#Button:
+	#	id: redo_button
+	#	opacity: 0
+	#	disabled: True
+	#	size_hint: (None, None)
+	#	pos_hint: {"center_x":0.2, "center_y":0.1}
+    #    on_release:
+    #        pass
+	#	background_color: 0, 0, 0, 0
+	#	Image:
+	#		id: redo_image
+	#		source: 'images/RedoButton.png'
+	#		center_x: self.parent.center_x
+	#		center_y: self.parent.center_y
+
 	Button:
 		id: weiter_button
+		disabled: True
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.8, "center_y":0.1}
 		background_color: 0, 0, 0, 0
-		on_press: camera.play = True; root.setGoBackButtonVisibility(False); root.addSchrittIndex()
+		#on_press: camera.play = True; root.disableWidget('go_back_button', True); root.addSchrittIndex()
+		on_press:
+			app.root.current = "third"
+			root.manager.transition.direction = "left"
 		Image:
 			id: weiter_Image
 			source: 'images/WeiterButton.png'
@@ -102,12 +123,128 @@
 			center_y: self.parent.center_y
 
 	Label:
-		id: 'hinweis_label'
+		id: hinweis_label
 		text: root.hinweis_label_text
 		font_size:20
 		size_hint_y: None
 		height: 50
 		pos_hint: {"x": 0.05, "y": 0.90}
 
+	Label:
+		id: distance_label
+		text: '3.2 m'
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.25}
 
+<ThirdWindow>:
+	name: "third"
+
+	GridLayout:
+		cols:1
+		spacing: 10
+		padding: 10
+
+		canvas.before:
+	        Color:
+	            rgba: (85/255, 85/255, 85/255, 1)
+	        Rectangle:
+	            pos: self.pos
+	            size: self.size
+
+		Label:
+			id: result_label
+			text: 'Ergebnisse'
+			font_size: 40
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.9}
 		
+		Label:
+			id: height_label
+			text: 'Deine Höhe: 180'
+			font_size: 20
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.8}
+
+		Label:
+			id: lowest_point_label
+			text: 'Tiefster Punkt:'
+			font_size: 30
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.7}
+		Label:
+			id: lowest_point_distance_label
+			text: 'Abstand: 3.2 m'
+			font_size: 20
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.65}
+		Label:
+			id: lowest_point_angle_label
+			text: 'Winkel: 60°'
+			font_size: 20
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.6}
+
+		Label:
+			id: highest_point_label
+			text: 'Höchster Punkt:'
+			font_size: 30
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.5}
+		Label:
+			id: highest_point_distance_label
+			text: 'Abstand: 8.7 m'
+			font_size: 20
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.45}
+		Label:
+			id: highest_point_angle_label
+			text: 'Winkel: 105°'
+			font_size: 20
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.4}
+
+		Label:
+			id: height_lbael
+			text: 'Höhe: 18 m'
+			font_size: 40
+			size_hint_y: None
+			height: 50
+			pos_hint: {"center_x":0.5, "center_y":0.3}
+
+	Button:
+		id: go_back_button
+		size_hint: (None, None)
+		pos_hint: {"center_x":0.2, "center_y":0.1}
+        on_release:
+            app.root.current = "second"
+            root.manager.transition.direction = "right"
+		background_color: 0, 0, 0, 0
+		Image:
+			id: return_Image
+			source: 'images/ReturnButton.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
+
+	Button:
+		id: new_button
+		size_hint: (None, None)
+		pos_hint: {"center_x":0.8, "center_y":0.1}
+		background_color: 0, 0, 0, 0
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+		Image:
+			id: new_Image
+			source: 'images/RedoButton.png'
+			center_x: self.parent.center_x
+			center_y: self.parent.center_y
