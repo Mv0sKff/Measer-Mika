@@ -60,26 +60,26 @@ class SecondWindow(Screen):
     def setGoBackButtonVisibility(self, visible):
         if visible:
             self.ids.go_back_button.opacity = 100
-            self.ids.go_back_button.disabled: False
+            self.ids.go_back_button.disabled = False
         else:
             self.ids.go_back_button.opacity = 0
-            self.ids.go_back_button.disabled: True
+            self.ids.go_back_button.disabled = True
 
     def setWeiterButtonVisibility(self, visible):
         if visible:
             self.ids.weiter_button.opacity = 100
-            self.ids.weiter_button.disabled: False
+            self.ids.weiter_button.disabled = False
         else:
             self.ids.weiter_button.opacity = 0
-            self.ids.weiter_button.disabled: True 
+            self.ids.weiter_button.disabled = True 
 
     def setCameraCaptureButtonVisibility(self, visible):
         if visible:
             self.ids.capture_button.opacity = 100
-            self.ids.capture_button.disabled: False
+            self.ids.capture_button.disabled = False
         else:
             self.ids.capture_button.opacity = 0
-            self.ids.capture_button.disabled: True 
+            self.ids.capture_button.disabled = True 
 
     def indexChanged(self):
         if self.schrittIndex == 2:
