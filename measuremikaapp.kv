@@ -60,13 +60,17 @@
         id: camera
 		index: 0
         play: True
-		resolution: (500, 1000)
+		keep_ratio: False
 		allow_stretch: False
+		pos: self.pos
+        size: self.size
 		canvas.before:
             PushMatrix
             Rotate:
                 angle: -90
                 origin: self.center
+                pos: self.pos
+                size: self.size
         canvas.after:
             PopMatrix
 	Label:
@@ -77,10 +81,10 @@
 			pos_hint: {"center_x":0.5, "center_y":0.5}
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
-			
-    ToggleButton:
+
+    Button:
 		id: capture_button
-        on_press: camera.play = not camera.play; root.addSchrittIndex(); root.changeTippText()
+        on_press: camera.play = False; root.addSchrittIndex();
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.5, "center_y":0.1}
 		background_color: 0, 0, 0, 0
@@ -108,7 +112,7 @@
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.8, "center_y":0.1}
 		background_color: 0, 0, 0, 0
-		on_press: root.setGoBackButtonVisibility(False)
+		on_press: camera.play = True; root.setGoBackButtonVisibility(False); root.addSchrittIndex()
 		Image:
 			id: weiter_Image
 			source: 'images/WeiterButton.png'

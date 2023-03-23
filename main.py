@@ -39,9 +39,11 @@ class SecondWindow(Screen):
 
     def addSchrittIndex(self):
         self.schrittIndex += 1
+        self.indexChanged()
 
     def returnSchrittIndex(self):
         self.schrittIndex -= 1
+        self.indexChanged()
 
     def changeTippText(self):
         if self.schrittIndex == 1:
@@ -52,6 +54,8 @@ class SecondWindow(Screen):
             self.hinweis_label_text = 'Halten Sie das Handy wieder auf Kopfhöhe\nund zielen Sie mit dem Fadenkreutz auf den\nhöchsten Punkt des Objektes.'
         elif self.schrittIndex == 4:
             self.hinweis_label_text = 'Auch das ist geschaft, wenn Sie den Vorgang\nwiederholen möchten, dann benutzen Sie den\nButton links unten. Wenn alles passt,\ndann den Button rechts unten.'
+        else:
+            self.hinweis_label_text = ''
 
     def setGoBackButtonVisibility(self, visible):
         if visible:
@@ -67,7 +71,31 @@ class SecondWindow(Screen):
             self.ids.weiter_button.disabled: False
         else:
             self.ids.weiter_button.opacity = 0
-            self.ids.weiter_button.disabled: True  
+            self.ids.weiter_button.disabled: True 
+
+    def setCameraCaptureButtonVisibility(self, visible):
+        if visible:
+            self.ids.capture_button.opacity = 100
+            self.ids.capture_button.disabled: False
+        else:
+            self.ids.capture_button.opacity = 0
+            self.ids.capture_button.disabled: True 
+
+    def indexChanged(self):
+        if self.schrittIndex == 2:
+            self.setGoBackButtonVisibility(False)
+            self.setWeiterButtonVisibility(True)
+            self.setCameraCaptureButtonVisibility(False)
+        if self.schrittIndex == 3:
+            self.setWeiterButtonVisibility(False)
+            self.setCameraCaptureButtonVisibility(True)
+        if self.schrittIndex == 4:
+            self.setWeiterButtonVisibility(True)
+            self.setCameraCaptureButtonVisibility(False)
+        #if self.schrittIndex >= 5:
+            # Hier muss dann der 3. Bildschirm aufgerufen werden
+        self.changeTippText()
+        
 
 class WindowManager(ScreenManager):
     pass
