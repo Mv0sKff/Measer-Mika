@@ -72,32 +72,27 @@ class SecondWindow(Screen):
             self.ids[id].opacity = 100
 
     def indexChanged(self):
-        match self.schrittIndex:
-            case 1:
-                self.disableWidget('go_back_button', False)
-                self.disableWidget('weiter_button', True)
-                self.disableWidget('capture_button', False)
-                self.createRedoButton(False)
-                self.ids['camera'].play = True
-                return
-            case 2:
-                self.disableWidget('go_back_button', True)
-                self.disableWidget('weiter_button', False)
-                self.disableWidget('capture_button', True)
-                self.createRedoButton(True)
-                self.ids['camera'].play = False
-                return
-            case 3:
-                self.disableWidget('weiter_button', True)
-                self.disableWidget('capture_button', False)
-                return
-            case 4:
-                self.disableWidget('weiter_button', False)
-                self.disableWidget('capture_button', True)
-                return
-            case 5:
-                # Hier muss dann der 3. Bildschirm aufgerufen werden
-                return
+        if self.schrittIndex == 1:
+            self.disableWidget('go_back_button', False)
+            self.disableWidget('weiter_button', True)
+            self.disableWidget('capture_button', False)
+            self.createRedoButton(False)
+            self.ids['camera'].play = True
+        elif self.schrittIndex == 2:
+            self.disableWidget('go_back_button', True)
+            self.disableWidget('weiter_button', False)
+            self.disableWidget('capture_button', True)
+            self.createRedoButton(True)
+            self.ids['camera'].play = False
+        elif self.schrittIndex == 3:
+            self.disableWidget('weiter_button', True)
+            self.disableWidget('capture_button', False)
+        elif self.schrittIndex == 4:
+            self.disableWidget('weiter_button', False)
+            self.disableWidget('capture_button', True)
+        elif self.schrittIndex == 5:
+            # Hier muss dann der 3. Bildschirm aufgerufen werden
+            pass
         self.changeTippText()
     
     def createRedoButton(self, create: bool = True):
