@@ -77,16 +77,18 @@ class SecondWindow(Screen):
 
     def indexChanged(self):
         if self.schrittIndex == 1:
-            self.disableWidget('go_back_button', False)
+            #self.disableWidget('go_back_redo_button', False)
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
-            self.createRedoButton(False)
+            #self.createRedoButton(False)
+            self.ids['go_back_redo_image'].source = 'images/ReturnButton.png'
             self.ids['camera'].play = True
         elif self.schrittIndex == 2:
-            self.disableWidget('go_back_button', True)
+            #self.disableWidget('go_back_redo_button', True)
             self.disableWidget('weiter_button', False)
             self.disableWidget('capture_button', True)
-            self.createRedoButton(True)
+            #self.createRedoButton(True)
+            self.ids['go_back_redo_image'].source = 'images/RedoButton.png'
             self.ids['camera'].play = False
         elif self.schrittIndex == 3:
             self.disableWidget('weiter_button', True)
@@ -155,12 +157,10 @@ class FourthWindow(Screen):
                 self.ids.button1.text = "Start"
         except NotImplementedError:
             import traceback; traceback.print_exc()
-            self.ids.status.text =\
-"Gyroscope is not supported for your   platform"
+            self.ids.status.text = "Gyroscope is not supported for your platform"
 
 class WindowManager(ScreenManager):
     pass
-
 
 class MeasureMikaApp(App):
     def build(self):
@@ -180,5 +180,3 @@ class MeasureMikaApp(App):
 
 if __name__ == "__main__":
     MeasureMikaApp().run()
-
-

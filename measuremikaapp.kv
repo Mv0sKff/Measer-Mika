@@ -78,15 +78,15 @@
 			center_y: self.parent.center_y
 		
 	Button:
-		id: go_back_button
+		id: go_back_redo_button
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.2, "center_y":0.1}
         on_release:
-            app.root.current = "main"
-            root.manager.transition.direction = "right"
+			if go_back_redo_image.source == 'images/ReturnButton.png': app.root.current = "main"; root.manager.transition.direction = "right"
+			if go_back_redo_image.source == 'images/RedoButton.png': camera.play = True; root.returnSchrittIndex()
 		background_color: 0, 0, 0, 0
 		Image:
-			id: return_Image
+			id: go_back_redo_image
 			source: 'images/ReturnButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
@@ -230,7 +230,7 @@
             root.manager.transition.direction = "right"
 		background_color: 0, 0, 0, 0
 		Image:
-			id: return_Image
+			id: go_back_image
 			source: 'images/ReturnButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
@@ -244,34 +244,47 @@
             app.root.current = "fourth"
             root.manager.transition.direction = "right"
 		Image:
-			id: new_Image
+			id: new_image
 			source: 'images/RedoButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
 
 <FourthWindow>:
-    Label:
-        id: label1
-        pos: 150, 300
-        text: 'X: '
+	Label:
+		id: label1
+		text: 'X: '
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.9}
 
-    Label:
-        id: label2
-        pos: 150, 250
-        text: 'Y: '
+	Label:
+		id: label2
+		text: 'Y: '
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.8}
 
-    Label:
-        id: label3
-        pos: 150, 200
-        text: 'Z: '
-
-    Label:
-        id: status
-        pos: 150, 150
-        text: ''
+	Label:
+		id: label3
+		text: 'Z: '
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.7}
+	Label:
+		id: status
+		text: 'status: '
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.6}
 
     Button:
         id: button1
-        pos: 150, 50
+        size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.4}
         text: 'Start'
         on_press: root.pressed1()
