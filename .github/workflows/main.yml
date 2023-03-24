@@ -22,7 +22,8 @@ jobs:
         with:
           workdir: .
           buildozer_version: stable
-
+          python-version: 3.10
+          
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
