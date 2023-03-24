@@ -241,10 +241,37 @@
 		pos_hint: {"center_x":0.8, "center_y":0.1}
 		background_color: 0, 0, 0, 0
         on_release:
-            app.root.current = "main"
+            app.root.current = "fourth"
             root.manager.transition.direction = "right"
 		Image:
 			id: new_Image
 			source: 'images/RedoButton.png'
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
+
+<FourthWindow>:
+    Label:
+        id: label1
+        pos: 150, 300
+        text: 'X: '
+
+    Label:
+        id: label2
+        pos: 150, 250
+        text: 'Y: '
+
+    Label:
+        id: label3
+        pos: 150, 200
+        text: 'Z: '
+
+    Label:
+        id: status
+        pos: 150, 150
+        text: ''
+
+    Button:
+        id: button1
+        pos: 150, 50
+        text: 'Start'
+        on_press: root.pressed1()

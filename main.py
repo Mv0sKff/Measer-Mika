@@ -10,6 +10,10 @@ from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
+from kivy.clock import Clock
+
+if platform == "android":
+    from plyer import gyroscope
 
 Config.set('graphics', 'resizable', True)
 hoeheInZentimeter = NumericProperty()
@@ -123,8 +127,40 @@ Button:
 class ThirdWindow(Screen):
     pass
 
+class FourthWindow(Screen):
+    def __init__(self, **kwargs):
+        super(FourthWindow, self).__init__(**kwargs)
+        self.sensorEnabled = False
+
+    def get_orientation(self, dt):
+        val = gyroscope.orientation
+
+        self.ids.label1.text = "X: " + str(val[0])
+        self.ids.label2.text = "Y: " + str(val[1])
+        self.ids.label3.text = "Z: " + str(val[2])
+
+    def pressed1(self):
+        try:
+            if not self.sensorEnabled:
+                gyroscope.enable()
+                Clock.schedule_interval(self.get_orientation, 1 / 20.)
+
+                self.sensorEnabled = True
+                self.ids.button1.text = "Stop"
+            else:
+                gyroscope.disable()
+                Clock.unschedule(self.get_orientation)
+
+                self.sensorEnabled = False
+                self.ids.button1.text = "Start"
+        except NotImplementedError:
+            import traceback; traceback.print_exc()
+            self.ids.status.text =\
+"Gyroscope is not supported for your   platform"
+
 class WindowManager(ScreenManager):
     pass
+
 
 class MeasureMikaApp(App):
     def build(self):
@@ -138,6 +174,7 @@ class MeasureMikaApp(App):
         app.add_widget(MainWindow(name='main'))
         app.add_widget(SecondWindow(name='second'))
         app.add_widget(ThirdWindow(name='third'))
+        app.add_widget(FourthWindow(name='fourth'))
         
         return app
 
