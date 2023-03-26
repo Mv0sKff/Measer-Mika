@@ -84,12 +84,12 @@ class SecondWindow(Screen):
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
             self.ids['go_back_redo_image'].source = 'images/ReturnButton.png'
-            self.ids['camera'].play = True
+            #self.ids['camera'].play = True
         elif self.schrittIndex == 2:
             self.disableWidget('weiter_button', False)
             self.disableWidget('capture_button', True)
             self.ids['go_back_redo_image'].source = 'images/RedoButton.png'
-            self.ids['camera'].play = False
+            #self.ids['camera'].play = False
         elif self.schrittIndex == 3:
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
@@ -153,6 +153,7 @@ class WindowManager(ScreenManager):
 
 class MeasureMikaApp(App):
     def build(self):
+        self.icon = "images\icon.png"
         if platform == "android":
             from android.permissions import request_permissions, Permission
             request_permissions([
