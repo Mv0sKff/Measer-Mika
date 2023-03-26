@@ -12,6 +12,7 @@ from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 from kivy.clock import Clock
 from kivy.core.window import Window
+import math
 
 Window.maximize()
 if platform == "android":
@@ -118,6 +119,11 @@ class FourthWindow(Screen):
             self.ids.label1.text = "azimuth: " + str(azimuth) + "°"
             self.ids.label2.text = "pitch: " + str(pitch) + "°"
             self.ids.label3.text = "roll: " + str(roll) + "°"
+
+            # distance
+            b = 150 * math.cos(pitch)
+
+            self.ids.distance.text = "distance: " + str(b) + " cm"
 
         except:
             print("error gyroscope.orientation")

@@ -281,10 +281,18 @@
 		height: 50
 		pos_hint: {"center_x":0.5, "center_y":0.6}
 
+	Label:
+		id: distance
+		text: 'distance: '
+		font_size: 20
+		size_hint_y: None
+		height: 50
+		pos_hint: {"center_x":0.5, "center_y":0.5}
+
     Button:
         id: button1
         size_hint_y: None
 		height: 50
-		pos_hint: {"center_x":0.5, "center_y":0.4}
+		pos_hint: {"center_x":0.5, "center_y":0.3}
         text: 'Start'
         on_press: root.pressed1()
