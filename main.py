@@ -11,7 +11,9 @@ from kivy.uix.label import Label
 from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 from kivy.clock import Clock
+from kivy.core.window import Window
 
+Window.maximize()
 if platform == "android":
     #from plyer import gyroscope
     from plyer import spatialorientation
