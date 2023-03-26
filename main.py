@@ -13,7 +13,8 @@ from kivy.properties import NumericProperty
 from kivy.clock import Clock
 
 if platform == "android":
-    from plyer import gyroscope
+    #from plyer import gyroscope
+    from plyer import spatialorientation
 
 Config.set('graphics', 'resizable', True)
 hoeheInZentimeter = NumericProperty()
@@ -107,24 +108,27 @@ class FourthWindow(Screen):
 
     def get_orientation(self, dt):
         try:
-            val = gyroscope.orientation
+            #val = gyroscope.orientation
+            val = spatialorientation.orientation
+            self.ids.label1.text = "azimuth: " + str(val[0])
+            self.ids.label2.text = "pitch: " + str(val[1])
+            self.ids.label3.text = "roll: " + str(val[2])
 
-            self.ids.label1.text = "X: " + str(val[0])
-            self.ids.label2.text = "Y: " + str(val[1])
-            self.ids.label3.text = "Z: " + str(val[2])
         except:
             print("error gyroscope.orientation")
 
     def pressed1(self):
         try:
             if not self.sensorEnabled:
-                gyroscope.enable()
+                #gyroscope.enable()
+                spatialorientation.enable_listener()
                 Clock.schedule_interval(self.get_orientation, 1 / 20.)
 
                 self.sensorEnabled = True
                 self.ids.button1.text = "Stop"
             else:
-                gyroscope.disable()
+                #gyroscope.disable()
+                spatialorientation.disable_listener()
                 Clock.unschedule(self.get_orientation)
 
                 self.sensorEnabled = False
