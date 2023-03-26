@@ -112,9 +112,12 @@ class FourthWindow(Screen):
         try:
             #val = gyroscope.orientation
             val = spatialorientation.orientation
-            self.ids.label1.text = "azimuth: " + str(val[0])
-            self.ids.label2.text = "pitch: " + str(val[1])
-            self.ids.label3.text = "roll: " + str(val[2])
+            azimuth = int(val[0] * 100)
+            pitch = int(val[1] * 100)
+            roll = int(val[2] * 100)
+            self.ids.label1.text = "azimuth: " + str(azimuth) + "°"
+            self.ids.label2.text = "pitch: " + str(pitch) + "°"
+            self.ids.label3.text = "roll: " + str(roll) + "°"
 
         except:
             print("error gyroscope.orientation")
