@@ -115,13 +115,13 @@ class FourthWindow(Screen):
             val = spatialorientation.orientation
             azimuth = int(val[0] * 100)
             pitch = int(val[1] * 100)
-            roll = int(val[2] * 100)
-            self.ids.label1.text = "azimuth: " + str(azimuth) + "°"
-            self.ids.label2.text = "pitch: " + str(pitch) + "°"
-            self.ids.label3.text = "roll: " + str(roll) + "°"
+            roll = int((val[2] + math.pi / 2) * 100)
+            self.ids.label1.text = "azimuth: " + str(azimuth)
+            self.ids.label2.text = "pitch: " + str(pitch)
+            self.ids.label3.text = "angle: " + str(roll) + "°"
 
-            # distance
-            b = 150 * math.cos(pitch)
+            # b = distance
+            b = int(150 * math.cos(roll))
 
             self.ids.distance.text = "distance: " + str(b) + " cm"
 
