@@ -84,12 +84,12 @@ class SecondWindow(Screen):
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
             self.ids['go_back_redo_image'].source = 'images/ReturnButton.png'
-            #self.ids['camera'].play = True
+            self.ids['camera'].play = True
         elif self.schrittIndex == 2:
             self.disableWidget('weiter_button', False)
             self.disableWidget('capture_button', True)
             self.ids['go_back_redo_image'].source = 'images/RedoButton.png'
-            #self.ids['camera'].play = False
+            self.ids['camera'].play = False
         elif self.schrittIndex == 3:
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
@@ -135,7 +135,7 @@ class FourthWindow(Screen):
                 spatialorientation.enable_listener()
                 Clock.schedule_interval(self.get_orientation, 1 / 20.)
 
-                self.sensorEnabled = True
+                self.sensorEnabled = Trueicon
                 self.ids.button1.text = "Stop"
             else:
                 #gyroscope.disable()
