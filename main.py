@@ -155,7 +155,7 @@ class ThirdWindow(Screen):
         if platform == "android":
             from android.storage import primary_external_storage_path
             fname = os.path.join(primary_external_storage_path(),'/Download/ergebnisse.json')
-            with open(fname, 'wb') as f:        
+            with open(fname, 'w') as f:        
                 f.write(dictionary)
             return fname
  
