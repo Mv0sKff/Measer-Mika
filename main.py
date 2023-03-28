@@ -99,6 +99,7 @@ class SecondWindow(Screen):
         print(self.schrittIndex, "(--)")
 
     def changeTippText(self):
+        """Text des hinweis_label_text Widget nach aktuellem Index anpassen"""
         if self.schrittIndex == 1:
             self.hinweis_label_text = 'Halten Sie das Handy auf Kopfhöhe und\nzielen Sie mit dem Fadenkreuz auf den tiefsten\nPunkt des Objektes. Nehmen Sie dann ein Foto auf.'
         elif self.schrittIndex == 2:
@@ -111,6 +112,7 @@ class SecondWindow(Screen):
             self.hinweis_label_text = ''
 
     def disableWidget(self, id: str, disable: bool):
+        """Deaktiviert Widgets"""
         if disable:
             self.ids[id].disabled = True
             self.ids[id].opacity = 0
@@ -119,6 +121,7 @@ class SecondWindow(Screen):
             self.ids[id].opacity = 100
 
     def indexChanged(self):
+        """GUI Widgets nach aktuellem Index ein und ausblenden"""
         if self.schrittIndex == 1:
             self.disableWidget('weiter_button', True)
             self.disableWidget('capture_button', False)
@@ -148,6 +151,7 @@ class ThirdWindow(Screen):
     #    self.saveErgebnis()
 
     #def saveErgebnis(self):
+    #   """Schreibe in JSON Datei"""
     #    dictionary = {
     #        "Höhe": 'entfernung',
     #        "Entfernung": 'höhe',
@@ -158,7 +162,6 @@ class ThirdWindow(Screen):
     #        with open(fname, 'wb') as f:        
     #            f.write(dictionary)
     #        return fname
- 
 
 class FourthWindow(Screen):
     def __init__(self, **kwargs):
