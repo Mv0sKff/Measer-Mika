@@ -145,19 +145,19 @@ class SecondWindow(Screen):
 class ThirdWindow(Screen):
     def __init__(self, **kwargs):
         super(ThirdWindow, self).__init__(**kwargs)
-        self.saveErgebnis()
+    #    self.saveErgebnis()
 
-    def saveErgebnis(self):
-        dictionary = {
-            "Höhe": 'entfernung',
-            "Entfernung": 'höhe',
-            }
-        if platform == "android":
-            from android.storage import primary_external_storage_path
-            fname = os.path.join(primary_external_storage_path(),'/Download/ergebnisse.json')
-            with open(fname, 'w') as f:        
-                f.write(dictionary)
-            return fname
+    #def saveErgebnis(self):
+    #    dictionary = {
+    #        "Höhe": 'entfernung',
+    #        "Entfernung": 'höhe',
+    #        }
+    #    if platform == "android":
+    #        from android.storage import primary_external_storage_path
+    #        fname = os.path.join(primary_external_storage_path(),'/Download/ergebnisse.json')
+    #        with open(fname, 'wb') as f:        
+    #            f.write(dictionary)
+    #        return fname
  
 
 class FourthWindow(Screen):

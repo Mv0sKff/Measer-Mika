@@ -23,9 +23,9 @@
 			height: 100
 
 		Carousel:
-		    direction: 'right'
+		    direction: 'right'	# Richtung des Carousel konfiguriert
 		    AsyncImage:
-		        source: 'images/Anleitung_01.png'
+		        source: 'images/Anleitung_01.png'	# 4 Anleitungsbilder importiert
 		    AsyncImage:
 		        source: 'images/Anleitung_02.png'
 		    AsyncImage:
@@ -33,14 +33,29 @@
 		    AsyncImage:
 		        source: 'images/Anleitung_04.png'
 
+	BoxLayout:					# BoxLayout erstellt um den Button schöner zu designen.
+		orientation: "horizontal"
+		cols: 1
+		spacing: 10
+		padding: [root.width*0.1, 20, root.width*0.1, 20]
+		size_hint_y: 0.2
+		height: 100
+
 		Button:
-            text: "Submit"
+			text: "Alles klar, verstanden!"
 			background_normal: ''
-			background_color: ("#3584e4")
+			#background_color: (0,0,0,0)
 			size_hint_y: None
 			height: 100
-            on_release:
-				if not root.checkData(): app.root.current = "second"; root.manager.transition.direction = "left"
+			canvas.before:
+				Color:
+					rgba: (0.25, 0.25 ,0.25 ,1)	#leicht hellere Farbe als der Hintergurnd
+				RoundedRectangle:
+					pos: self.pos
+					size: self.size
+					radius: [70]	# Abgerundete Ecken
+			on_release:
+				if not root.checkData(): app.root.current = "second"; root.manager.transition.direction = "left" # Funktion, wenn der Button gedrückt wird soll der zweite Bildschirm geöffnet werden, Richtung nach links.
 
 <SecondWindow>:
     name: "second"
