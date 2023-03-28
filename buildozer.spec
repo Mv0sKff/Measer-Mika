@@ -13,7 +13,7 @@ requirements = python3,kivy,opencv-python,plyer
 orientation = portrait
 fullscreen = 0
 android.archs = arm64-v8a
-android.permissions = CAMERA
+android.permissions = CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 icon.filename = images/icon.png
 
 # iOS specific
