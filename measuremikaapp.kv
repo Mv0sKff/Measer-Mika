@@ -45,20 +45,20 @@
 <SecondWindow>:
     name: "second"
 
-    #Camera:
-    #    id: camera
-    #    play: True
-	#	keep_ratio: True
-	#	allow_stretch: True
-	#	pos: self.pos
-    #   size: self.size
-	#	canvas.before:
-    #        PushMatrix
-    #        Rotate:
-    #            angle: -90
-    #            origin: self.center
-    #    canvas.after:
-    #        PopMatrix
+    Camera:
+        id: camera
+        play: True
+		keep_ratio: True
+		allow_stretch: True
+		pos: self.pos
+       size: self.size
+		canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -90
+                origin: self.center
+        canvas.after:
+            PopMatrix
 	Label:
 		id: crosshair
 		Image:
@@ -115,7 +115,7 @@
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.8, "center_y":0.1}
 		background_color: 0, 0, 0, 0
-		#on_press: camera.play = True; root.disableWidget('go_back_button', True); root.addSchrittIndex()
+		on_press: camera.play = True; root.disableWidget('go_back_button', True); root.addSchrittIndex()
 		on_press:
 			app.root.current = "third"
 			root.manager.transition.direction = "left"
