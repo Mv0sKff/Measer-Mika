@@ -14,6 +14,7 @@ orientation = portrait
 fullscreen = 0
 android.archs = arm64-v8a
 android.permissions = CAMERA
+icon.filename = images/icon.png
 
 # iOS specific
 ios.kivy_ios_url = https://github.com/kivy/kivy-ios
