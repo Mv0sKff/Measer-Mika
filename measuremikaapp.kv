@@ -63,14 +63,14 @@
 		id: crosshair
 		Image:
 			id: crosshair_image
-			source: 'images/fadenkreuz.png'
+			source: 'images/Crosshair.png'
 			pos_hint: {"center_x":0.5, "center_y":0.5}
 			center_x: self.parent.center_x
 			center_y: self.parent.center_y
 
     Button:
 		id: capture_button
-        on_press: root.addSchrittIndex()
+        on_press: camera.play = False; root.addSchrittIndex()
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.5, "center_y":0.1}
 		background_color: 0, 0, 0, 0
@@ -86,7 +86,7 @@
 		pos_hint: {"center_x":0.2, "center_y":0.1}
         on_release:
 			if go_back_redo_image.source == 'images/ReturnButton.png': app.root.current = "main"; root.manager.transition.direction = "right"
-			if go_back_redo_image.source == 'images/RedoButton.png': root.returnSchrittIndex()
+			if go_back_redo_image.source == 'images/RedoButton.png': camera.play = True; root.returnSchrittIndex()
 		background_color: 0, 0, 0, 0
 		Image:
 			id: go_back_redo_image
@@ -115,10 +115,12 @@
 		size_hint: (None, None)
 		pos_hint: {"center_x":0.8, "center_y":0.1}
 		background_color: 0, 0, 0, 0
-		on_press: camera.play = True; root.disableWidget('go_back_button', True); root.addSchrittIndex()
-		on_press:
-			app.root.current = "third"
-			root.manager.transition.direction = "left"
+		on_press: 
+			camera.play = True; 
+			root.disableWidget('go_back_redo_button', True); 
+			root.addSchrittIndex()
+			if root.schrittIndex == 5: app.root.current = "third"; root.manager.transition.direction = "left";
+
 		Image:
 			id: weiter_Image
 			source: 'images/WeiterButton.png'

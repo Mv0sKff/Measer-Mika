@@ -97,7 +97,9 @@ class SecondWindow(Screen):
             self.disableWidget('weiter_button', False)
             self.disableWidget('capture_button', True)
         elif self.schrittIndex == 5:
-            # Hier muss dann der 3. Bildschirm aufgerufen werden
+            self.disableWidget('weiter_button', True)
+            self.disableWidget('capture_button', True)
+            self.disableWidget('go_back_redo_image', True)
             pass
         self.changeTippText()
 
@@ -135,7 +137,7 @@ class FourthWindow(Screen):
                 spatialorientation.enable_listener()
                 Clock.schedule_interval(self.get_orientation, 1 / 20.)
 
-                self.sensorEnabled = Trueicon
+                self.sensorEnabled = True
                 self.ids.button1.text = "Stop"
             else:
                 #gyroscope.disable()
