@@ -24,8 +24,10 @@ Config.set('graphics', 'resizable', True)
 hoeheInZentimeter = NumericProperty()
 
 class MainWindow(Screen):
+    """Klasse für Startbildschirm"""
 
     def checkData(self):
+        """Überprüfen ob die angegebene Höhe valide ist"""
         popup = Popup(title='Hinweis',
             size_hint=(None, None), size=(350, 100))    
 
@@ -42,6 +44,7 @@ class MainWindow(Screen):
         return False
 
 class SecondWindow(Screen):
+    """Klasse für Kameraansicht"""
     hinweis_label_text = StringProperty()
     schrittIndex = NumericProperty()
 
@@ -51,6 +54,7 @@ class SecondWindow(Screen):
         self.sensorEnabled = False
         self.addSchrittIndex()
 
+        # spatialorientation aktivieren / deaktivieren
         if platform == "android":
             try:
                 if not self.sensorEnabled:
@@ -65,11 +69,14 @@ class SecondWindow(Screen):
                 import traceback; traceback.print_exc()
 
     def get_orientation(self, dt):
+        """distance_label Widget auf errechnet Distanzwerte setzen"""
         if platform == "android":
             #self.addSchrittIndex()
             try:
                 def measureDistance(pitch: float) -> float:
-                    # Wertebereich [0; -0,5 * pi]
+                    """Daten vom Spatialorientation sensor abgreifen und Distanz errechnen"""
+                    # Funktionierender Wertebereich [0; -0,5*pi]
+                    # [0; 0,5*pi] => Fuck
 
                     pitchAngle = int(pitch * -100)
 
@@ -85,15 +92,21 @@ class SecondWindow(Screen):
 
                 self.ids.distance_label.text = str(int(distance)) + " cm"
 
+                def measureHeight(distance: float, pitch2: float):
+                    """Errechnet die Höhe durch die zwei Messpunkte"""
+                    return 9.6
+
             except:
                 self.ids.distance_label.text = str(0) + " cm"
 
     def addSchrittIndex(self):
+        """Einen Schritt +=1 setzen"""
         self.schrittIndex += 1
         self.indexChanged()
         print(self.schrittIndex, "(+1)")
 
     def returnSchrittIndex(self):
+        """Einen Schritt -=1 setzen"""
         self.schrittIndex -= 1
         self.indexChanged()
         print(self.schrittIndex, "(--)")
@@ -146,6 +159,7 @@ class SecondWindow(Screen):
         self.changeTippText()
 
 class ThirdWindow(Screen):
+    """Klasse für Ergebnisse anzeigen"""
     def __init__(self, **kwargs):
         super(ThirdWindow, self).__init__(**kwargs)
     #    self.saveErgebnis()
@@ -164,13 +178,18 @@ class ThirdWindow(Screen):
     #        return fname
 
 class FourthWindow(Screen):
+    """Klasse für Testseite für spatialorientation"""
     def __init__(self, **kwargs):
         super(FourthWindow, self).__init__(**kwargs)
         self.sensorEnabled = False
 
     def get_orientation(self, dt):
+        """distance_label Widget auf errechnet Distanzwerte setzen"""
+
         try:
             def measureDistance(pitch: float) -> float:
+                """Daten vom Spatialorientation sensor abgreifen und Distanz errechnen"""
+
                 # Wertebereich [0; -0,5 * pi]
 
                 pitchRaw = int(pitch * -100)
@@ -198,6 +217,7 @@ class FourthWindow(Screen):
             print("error gyroscope.orientation")
 
     def pressed1(self):
+        """Sensor aktivieren on Button press"""
         try:
             if not self.sensorEnabled:
                 spatialorientation.enable_listener()
@@ -216,6 +236,7 @@ class FourthWindow(Screen):
             self.ids.status.text = "Gyroscope is not supported for your platform"
 
 class WindowManager(ScreenManager):
+    """Klasse für WindowManager"""
     pass
 
 class MeasureMikaApp(App):
