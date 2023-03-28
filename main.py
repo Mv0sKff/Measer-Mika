@@ -216,6 +216,7 @@ class WindowManager(ScreenManager):
     pass
 
 class MeasureMikaApp(App):
+    """Baut die GUI zusammen, requested nötige permissions und setzt das icon"""
     def build(self):
         self.icon = "images/icon.png"
         if platform == "android":
