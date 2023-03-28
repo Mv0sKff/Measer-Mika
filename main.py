@@ -48,7 +48,45 @@ class SecondWindow(Screen):
     def __init__(self, **kwargs):
         super(SecondWindow, self).__init__(**kwargs)
 
+        self.sensorEnabled = False
         self.addSchrittIndex()
+
+        if platform == "android":
+            try:
+                if not self.sensorEnabled:
+                    spatialorientation.enable_listener()
+                    Clock.schedule_interval(self.get_orientation, 1 / 20.)
+                    self.sensorEnabled = True
+                else:
+                    spatialorientation.disable_listener()
+                    Clock.unschedule(self.get_orientation)
+                    self.sensorEnabled = False
+            except NotImplementedError:
+                import traceback; traceback.print_exc()
+
+    def get_orientation(self, dt):
+        if platform == "android":
+            #self.addSchrittIndex()
+            try:
+                def measureDistance(pitch: float) -> float:
+                    # Wertebereich [0; -0,5 * pi]
+
+                    pitchAngle = int(pitch * -100)
+
+                    a = 150
+                    beta = pitchAngle
+                    c = a / math.cos(beta)
+                    b = math.sqrt(c ** 2 - a ** 2)
+
+                    return b
+
+                val = spatialorientation.orientation
+                distance = measureDistance(val[1])
+
+                self.ids.distance_label.text = str(int(distance)) + " cm"
+
+            except:
+                self.ids.distance_label.text = str(0) + " cm"
 
     def addSchrittIndex(self):
         self.schrittIndex += 1
@@ -128,18 +166,29 @@ class FourthWindow(Screen):
 
     def get_orientation(self, dt):
         try:
+            def measureDistance(pitch: float) -> float:
+                # Wertebereich [0; -0,5 * pi]
+
+                pitchRaw = int(pitch * -100)
+                pitchAngle = pitchRaw
+
+                print(pitchAngle)
+
+                a = 150
+                beta = pitchAngle
+                c = a / math.cos(beta)
+                b = math.sqrt(c ** 2 - a ** 2)
+
+                self.ids.label1.text = "pitch: " + str(pitch)
+                self.ids.label2.text = "pitchRaw: " + str(pitchRaw)
+                self.ids.label3.text = "pitchAngle: " + str(pitchAngle) + "°"
+
+                return b
+
             val = spatialorientation.orientation
-            pitchRaw = int(val[1] * 100)
-            pitchAngle = int((val[1] + math.pi) * 100)
+            distance = measureDistance(val[1])
 
-            self.ids.label1.text = "pitchRaw: " + str(pitchRaw)
-            self.ids.label2.text = "pitchAngle: " + str(pitchAngle)
-            self.ids.label3.text = "pitch: " + str(pitch) + "°"
-
-            # b = distance
-            b = int(150 * math.cos(pitchAngle))
-
-            self.ids.distance.text = "distance: " + str(b) + " cm"
+            self.ids.distance.text = "distance: " + str(distance) + " cm"
 
         except:
             print("error gyroscope.orientation")
