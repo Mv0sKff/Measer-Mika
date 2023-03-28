@@ -106,7 +106,7 @@ class SecondWindow(Screen):
 
 class ThirdWindow(Screen):
     def __init__(self, **kwargs):
-        super(SecondWindow, self).__init__(**kwargs)
+        super(ThirdWindow, self).__init__(**kwargs)
         self.saveErgebnis()
 
     def saveErgebnis(self):
