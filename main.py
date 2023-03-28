@@ -115,7 +115,8 @@ class ThirdWindow(Screen):
             "Entfernung": 'höhe',
             }
         if platform == "android":
-            fname = os.path.join( primary_external_storage_path(),'ergebnisse.json')
+            from android.storage import primary_external_storage_path
+            fname = os.path.join(primary_external_storage_path(),'ergebnisse.json')
             with open(fname, 'wb') as f:        
                 f.write(dictionary)
             return fname
@@ -170,7 +171,6 @@ class MeasureMikaApp(App):
         self.icon = "images/icon.png"
         if platform == "android":
             from android.permissions import request_permissions, Permission
-            from android.storage import app_storage_path, primary_external_storage_path, secondary_external_storage_path
             request_permissions([
                 Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE
             ])
