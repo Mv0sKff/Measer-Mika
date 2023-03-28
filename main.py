@@ -113,17 +113,16 @@ class FourthWindow(Screen):
 
     def get_orientation(self, dt):
         try:
-            #val = gyroscope.orientation
             val = spatialorientation.orientation
-            azimuth = int(val[0] * 100)
-            pitch = int(val[1] * 100)
-            roll = int((val[2] + math.pi / 2) * 100)
-            self.ids.label1.text = "azimuth: " + str(azimuth)
-            self.ids.label2.text = "pitch: " + str(pitch)
-            self.ids.label3.text = "angle: " + str(roll) + "°"
+            pitchRaw = int(val[1] * 100)
+            pitchAngle = int((val[1] + math.pi) * 100)
+
+            self.ids.label1.text = "pitchRaw: " + str(pitchRaw)
+            self.ids.label2.text = "pitchAngle: " + str(pitchAngle)
+            self.ids.label3.text = "pitch: " + str(pitch) + "°"
 
             # b = distance
-            b = int(150 * math.cos(roll))
+            b = int(150 * math.cos(pitchAngle))
 
             self.ids.distance.text = "distance: " + str(b) + " cm"
 
@@ -133,14 +132,12 @@ class FourthWindow(Screen):
     def pressed1(self):
         try:
             if not self.sensorEnabled:
-                #gyroscope.enable()
                 spatialorientation.enable_listener()
                 Clock.schedule_interval(self.get_orientation, 1 / 20.)
 
                 self.sensorEnabled = True
                 self.ids.button1.text = "Stop"
             else:
-                #gyroscope.disable()
                 spatialorientation.disable_listener()
                 Clock.unschedule(self.get_orientation)
 
@@ -155,7 +152,7 @@ class WindowManager(ScreenManager):
 
 class MeasureMikaApp(App):
     def build(self):
-        self.icon = "images\icon.png"
+        self.icon = "images/icon.png"
         if platform == "android":
             from android.permissions import request_permissions, Permission
             request_permissions([
