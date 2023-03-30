@@ -92,9 +92,12 @@ Höhenmessung mit App
         font-weight: bold;
     }
     h1 {
-        font-size: 50px;
+        font-size: 60px;
     }
 </style>
 
 # Danke für Eure Aufmerksamkeit
+
+![bg right:49% 110%](images/RocketStonks.jpg)
+
 
