@@ -36,6 +36,15 @@ Höhenmessung mit App
 
 ---
 
+<!-- _backgroundColor: #222222-->
+![bg right: 33% 100%](images/StartScreen.png)
+![bg right: 33% 100%](images/KameraSrceen.png)
+![bg right: 33% 100%](images/ErgebnisAnsicht.png)
+<!-- _footer: '' -->
+<!-- _paginate: false -->
+
+---
+
 # Innere Logik
 ## Aufbau / Klassen
 
