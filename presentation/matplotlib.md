@@ -37,6 +37,44 @@ Höhenmessung mit App
 ---
 
 # Innere Logik
+## Aufbau / Klassen
+
+---
+
+### MeasureMikaApp()
+- Haupt klasse
+- Permissions
+- Initialisiert Unterklassen
+
+---
+
+### MainWindow()
+- Eingabe der Größe
+- CheckData()
+- Anleitung
+- Button
+
+![bg right:28% 100%](images/StartScreen.png)
+
+---
+
+### SecondWindow()
+- Kamera
+- Buttons zur Navigation
+- Anwendungstipps
+- Index
+- Live Abstand
+
+![bg left:28% 110%](images/KameraSrceen.png)
+
+---
+
+### ThirdWindow()
+- Ergebnis Ansicht
+- Ergebnis Speichern 
+(not implemented)
+
+![bg right:28% 110%](images/ErgebnisAnsicht.png)
 
 ---
 
