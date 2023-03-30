@@ -27,6 +27,7 @@ backgroundColor: white
 </style>
 
 # MeasureMika
+
 Höhenmessung mit App
 <!-- Powereinstieg  -->
 
@@ -37,20 +38,22 @@ Höhenmessung mit App
 ---
 
 <!-- _backgroundColor: #222222-->
-![bg right: 33% 100%](images/StartScreen.png)
-![bg right: 33% 100%](images/KameraSrceen.png)
-![bg right: 33% 100%](images/ErgebnisAnsicht.png)
+![bg right: 33% 85%](images/StartScreen.png)
+![bg right: 33% 85%](images/KameraSrceen.png)
+![bg right: 33% 85%](images/ErgebnisAnsicht.png)
 <!-- _footer: '' -->
 <!-- _paginate: false -->
 
 ---
 
 # Innere Logik
+
 ## Aufbau und Klassen
 
 ---
 
 ### MeasureMikaApp()
+
 - Hauptklasse
 - Permissions
 - Initialisiert Unterklassen
@@ -58,6 +61,7 @@ Höhenmessung mit App
 ---
 
 ### MainWindow()
+
 - Eingabe der Größe
 - CheckData()
 - Anleitung
@@ -90,11 +94,12 @@ Höhenmessung mit App
 ---
 
 ### ThirdWindow()
+
 - Ergebnis Ansicht
-- Ergebnis Speichern 
+- Ergebnis Speichern
 (not implemented)
 
-![bg left:28% 110%](images/ErgebnisAnsicht.png)
+![bg left:28% 102%](images/ErgebnisAnsicht.png)
 
 ---
 
@@ -106,7 +111,25 @@ Höhenmessung mit App
 
 ---
 
+![bg 100% 100%](images/math2.png)
+
+---
+
 # Berechnen der Höhe
+
+---
+
+<!-- _footer: '' -->
+<!-- _paginate: false -->
+
+![bg 100% 100%](images/math3.png)
+
+---
+
+<!-- _footer: '' -->
+<!-- _paginate: false -->
+
+![bg 100% 100%](images/math4.png)
 
 ---
 
@@ -123,5 +146,3 @@ Höhenmessung mit App
 # Danke für Eure Aufmerksamkeit
 
 ![bg right:49% 110%](images/RocketStonks.jpg)
-
-
