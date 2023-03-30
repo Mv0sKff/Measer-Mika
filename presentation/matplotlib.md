@@ -32,12 +32,12 @@ Höhenmessung mit App
 
 ---
 
-# Was ist MeasureMika, grobe funktionsweise
+# Was ist MeasureMika, grobe Funktionsweise
 
 ---
 
 # Innere Logik
-## Aufbau / Klassen
+## Aufbau und Klassen
 
 ---
 
@@ -59,7 +59,9 @@ Höhenmessung mit App
 ---
 
 ### SecondWindow()
+
 - Kamera
+- Tiefster Punkt
 - Buttons zur Navigation
 - Anwendungstipps
 - Index
@@ -69,16 +71,29 @@ Höhenmessung mit App
 
 ---
 
+### SecondWindow()
+
+- Kamera
+- Höchster Punkt
+
+![bg right:28% 110%](images/KameraScreen2.png)
+
+---
+
 ### ThirdWindow()
 - Ergebnis Ansicht
 - Ergebnis Speichern 
 (not implemented)
 
-![bg right:28% 110%](images/ErgebnisAnsicht.png)
+![bg left:28% 110%](images/ErgebnisAnsicht.png)
 
 ---
 
 # Berechnen der Distanz
+
+---
+
+![bg 100% 100%](images/math1.png)
 
 ---
 
