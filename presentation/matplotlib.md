@@ -32,7 +32,19 @@ Höhenmessung mit App
 
 ---
 
-# Inhalt
+# Was ist MeasureMika, grobe funktionsweise
+
+---
+
+# Innere Logik
+
+---
+
+# Berechnen der Distanz
+
+---
+
+# Berechnen der Höhe
 
 ---
 
