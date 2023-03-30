@@ -42,7 +42,7 @@ Höhenmessung mit App
 ---
 
 ### MeasureMikaApp()
-- Haupt klasse
+- Hauptklasse
 - Permissions
 - Initialisiert Unterklassen
 
