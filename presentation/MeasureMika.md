@@ -37,6 +37,14 @@ Höhenmessung mit App
 
 ---
 
+# Anforderungen
+
+- Höhenmessung
+- Kamera
+- Neigungssensoren
+
+---
+
 <!-- _backgroundColor: #222222-->
 ![bg right: 33% 85%](images/StartScreen.png)
 ![bg right: 33% 85%](images/KameraSrceen.png)
